@@ -15,6 +15,14 @@ namespace CadastroDeProduto
         public TelaDeCadastro()
         {
             InitializeComponent();
+            Conection con = new Conection();
+            gridProdutos.DataSource = null;
+            gridProdutos.DataSource = con.Select();
+        }
+
+        private void gridProdutos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
