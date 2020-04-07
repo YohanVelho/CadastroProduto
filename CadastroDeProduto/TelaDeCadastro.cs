@@ -22,7 +22,12 @@ namespace CadastroDeProduto
 
         private void gridProdutos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex >= 0)
+            {
 
+                txtID.Text = gridProdutos.Rows[e.RowIndex].Cells["id"].Value.ToString();
+                txtNome.Text = gridProdutos.Rows[e.RowIndex].Cells["nome"].Value.ToString();
+            }
         }
     }
 }

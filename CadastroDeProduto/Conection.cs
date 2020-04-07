@@ -26,7 +26,7 @@ namespace CadastroDeProduto
             try
             {
                 conn.Open();
-                sql = @"select * from produtos";
+                sql = @"select pro_id as ""ID"", pro_nome as ""Nome"", pro_precocusto as ""Preco de Custo"", pro_precovenda as ""Preco de Venda"", pro_ICMS as ""ICMS"" from produtos ";
                 cmd = new NpgsqlCommand(sql, conn);
                 dt = new DataTable();
                 dt.Load(cmd.ExecuteReader());
