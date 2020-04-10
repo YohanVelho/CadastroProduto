@@ -17,6 +17,7 @@ namespace CadastroDeProduto
         public NpgsqlCommand cmd;
         public DataTable dt;
 
+
         public Conection()
         {
         }
@@ -37,6 +38,29 @@ namespace CadastroDeProduto
                 MessageBox.Show("Error: " + e.Message);
             }
             return dt;
+        }
+
+        public void Cadastro(int ID, string nome, double precocusto, double precovenda, int icms)
+        {
+            try
+            {
+                conn.Open();
+                sql = "insert into produtos (pro_id,pro_nome,pro_precocusto,pro_precovenda,pro_icms) values (@id, @nome, @precocusto, @precovenda, @icms)";
+                ; cmd = new NpgsqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("id", ID);
+                cmd.Parameters.AddWithValue("nome", nome);
+                cmd.Parameters.AddWithValue("precocusto", precocusto);
+                cmd.Parameters.AddWithValue("precovenda", precovenda);
+                cmd.Parameters.AddWithValue("icms", icms);
+                cmd.ExecuteNonQuery();
+                conn.Close();
+                MessageBox.Show("Cadastrado com Sucesso!");
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Erro: " + e.Message);
+            }
         }
     }
 }
