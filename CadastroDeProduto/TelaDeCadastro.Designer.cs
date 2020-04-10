@@ -46,6 +46,9 @@ namespace CadastroDeProduto
             this.txtICMS = new System.Windows.Forms.TextBox();
             this.txtPesquisar = new System.Windows.Forms.TextBox();
             this.gridProdutos = new System.Windows.Forms.DataGridView();
+            this.comboBox_Filtros = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.comboBoxClassificacao = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.gridProdutos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -81,12 +84,13 @@ namespace CadastroDeProduto
             // 
             // btnPesquisar
             // 
-            this.btnPesquisar.Location = new System.Drawing.Point(13, 126);
+            this.btnPesquisar.Location = new System.Drawing.Point(13, 127);
             this.btnPesquisar.Name = "btnPesquisar";
             this.btnPesquisar.Size = new System.Drawing.Size(75, 23);
-            this.btnPesquisar.TabIndex = 9;
+            this.btnPesquisar.TabIndex = 11;
             this.btnPesquisar.Text = "Pesquisar";
             this.btnPesquisar.UseVisualStyleBackColor = true;
+            this.btnPesquisar.Click += new System.EventHandler(this.btnPesquisar_Click);
             // 
             // txtID
             // 
@@ -123,7 +127,7 @@ namespace CadastroDeProduto
             // lblIcms
             // 
             this.lblIcms.AutoSize = true;
-            this.lblIcms.Location = new System.Drawing.Point(541, 89);
+            this.lblIcms.Location = new System.Drawing.Point(429, 91);
             this.lblIcms.Name = "lblIcms";
             this.lblIcms.Size = new System.Drawing.Size(33, 13);
             this.lblIcms.TabIndex = 403;
@@ -132,7 +136,7 @@ namespace CadastroDeProduto
             // lblPrecoCusto
             // 
             this.lblPrecoCusto.AutoSize = true;
-            this.lblPrecoCusto.Location = new System.Drawing.Point(32, 89);
+            this.lblPrecoCusto.Location = new System.Drawing.Point(32, 90);
             this.lblPrecoCusto.Name = "lblPrecoCusto";
             this.lblPrecoCusto.Size = new System.Drawing.Size(80, 13);
             this.lblPrecoCusto.TabIndex = 503;
@@ -140,14 +144,14 @@ namespace CadastroDeProduto
             // 
             // txtPrecoCusto
             // 
-            this.txtPrecoCusto.Location = new System.Drawing.Point(113, 85);
+            this.txtPrecoCusto.Location = new System.Drawing.Point(113, 86);
             this.txtPrecoCusto.Name = "txtPrecoCusto";
             this.txtPrecoCusto.Size = new System.Drawing.Size(75, 20);
             this.txtPrecoCusto.TabIndex = 3;
             // 
             // txtPrecoVenda
             // 
-            this.txtPrecoVenda.Location = new System.Drawing.Point(350, 85);
+            this.txtPrecoVenda.Location = new System.Drawing.Point(305, 86);
             this.txtPrecoVenda.Name = "txtPrecoVenda";
             this.txtPrecoVenda.Size = new System.Drawing.Size(75, 20);
             this.txtPrecoVenda.TabIndex = 4;
@@ -155,7 +159,7 @@ namespace CadastroDeProduto
             // lblPrecoVenda
             // 
             this.lblPrecoVenda.AutoSize = true;
-            this.lblPrecoVenda.Location = new System.Drawing.Point(260, 89);
+            this.lblPrecoVenda.Location = new System.Drawing.Point(215, 90);
             this.lblPrecoVenda.Name = "lblPrecoVenda";
             this.lblPrecoVenda.Size = new System.Drawing.Size(84, 13);
             this.lblPrecoVenda.TabIndex = 503;
@@ -163,17 +167,17 @@ namespace CadastroDeProduto
             // 
             // txtICMS
             // 
-            this.txtICMS.Location = new System.Drawing.Point(580, 85);
+            this.txtICMS.Location = new System.Drawing.Point(468, 87);
             this.txtICMS.Name = "txtICMS";
             this.txtICMS.Size = new System.Drawing.Size(75, 20);
             this.txtICMS.TabIndex = 5;
             // 
             // txtPesquisar
             // 
-            this.txtPesquisar.Location = new System.Drawing.Point(97, 127);
+            this.txtPesquisar.Location = new System.Drawing.Point(97, 128);
             this.txtPesquisar.Name = "txtPesquisar";
-            this.txtPesquisar.Size = new System.Drawing.Size(300, 20);
-            this.txtPesquisar.TabIndex = 50;
+            this.txtPesquisar.Size = new System.Drawing.Size(511, 20);
+            this.txtPesquisar.TabIndex = 10;
             // 
             // gridProdutos
             // 
@@ -190,14 +194,57 @@ namespace CadastroDeProduto
             this.gridProdutos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridProdutos_CellContentClick_1);
             this.gridProdutos.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridProdutos_CellContentClick_1);
             // 
+            // comboBox_Filtros
+            // 
+            this.comboBox_Filtros.DisplayMember = "SelecionarPreco";
+            this.comboBox_Filtros.FormattingEnabled = true;
+            this.comboBox_Filtros.Items.AddRange(new object[] {
+            "Pesquisar por id",
+            "Pesquisar por nome",
+            "Pesquisar por preço de custo",
+            "Pesquisar por preço de venda",
+            "Pesquisar por classificação",
+            "Pesquisar por icms"});
+            this.comboBox_Filtros.Location = new System.Drawing.Point(614, 128);
+            this.comboBox_Filtros.Name = "comboBox_Filtros";
+            this.comboBox_Filtros.Size = new System.Drawing.Size(158, 21);
+            this.comboBox_Filtros.TabIndex = 504;
+            this.comboBox_Filtros.Text = "Filtros";
+            this.comboBox_Filtros.ValueMember = "Selecionar por preço";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(600, 91);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(69, 13);
+            this.label1.TabIndex = 403;
+            this.label1.Text = "Classificação";
+            // 
+            // comboBoxClassificacao
+            // 
+            this.comboBoxClassificacao.DisplayMember = "SelecionarPreco";
+            this.comboBoxClassificacao.FormattingEnabled = true;
+            this.comboBoxClassificacao.Items.AddRange(new object[] {
+            "Alimentos",
+            "Cigarros",
+            "Bebidas"});
+            this.comboBoxClassificacao.Location = new System.Drawing.Point(675, 88);
+            this.comboBoxClassificacao.Name = "comboBoxClassificacao";
+            this.comboBoxClassificacao.Size = new System.Drawing.Size(97, 21);
+            this.comboBoxClassificacao.TabIndex = 505;
+            // 
             // TelaDeCadastro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 561);
+            this.Controls.Add(this.comboBoxClassificacao);
+            this.Controls.Add(this.comboBox_Filtros);
             this.Controls.Add(this.gridProdutos);
             this.Controls.Add(this.lblPrecoVenda);
             this.Controls.Add(this.lblPrecoCusto);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.lblIcms);
             this.Controls.Add(this.lblId);
             this.Controls.Add(this.lblNome);
@@ -238,7 +285,9 @@ namespace CadastroDeProduto
         private System.Windows.Forms.TextBox txtICMS;
         private System.Windows.Forms.TextBox txtPesquisar;
         public System.Windows.Forms.DataGridView gridProdutos;
-
+        private ComboBox comboBox_Filtros;
+        private Label label1;
+        private ComboBox comboBoxClassificacao;
     }
 }
 
