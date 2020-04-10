@@ -31,8 +31,9 @@ namespace CadastroDeProduto
                 cmd = new NpgsqlCommand(sql, conn);
                 dt = new DataTable();
                 dt.Load(cmd.ExecuteReader());
-                conn.Close();                
-            }catch(Exception e)
+                conn.Close();
+            }
+            catch (Exception e)
             {
                 conn.Close();
                 MessageBox.Show("Error: " + e.Message);
@@ -46,7 +47,7 @@ namespace CadastroDeProduto
             {
                 conn.Open();
                 sql = "insert into produtos (pro_id,pro_nome,pro_precocusto,pro_precovenda,pro_icms) values (@id, @nome, @precocusto, @precovenda, @icms)";
-                ; cmd = new NpgsqlCommand(sql, conn);
+                cmd = new NpgsqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("id", ID);
                 cmd.Parameters.AddWithValue("nome", nome);
                 cmd.Parameters.AddWithValue("precocusto", precocusto);
@@ -62,5 +63,28 @@ namespace CadastroDeProduto
                 MessageBox.Show("Erro: " + e.Message);
             }
         }
+
+        public void Atualizar(int id, string nome, double precocusto, double precovenda, int icms)
+        {
+            try
+            {
+                conn.Open();
+                sql = "update produtos set pro_id = @id, pro_nome = @nome , pro_precocusto = @precocusto, pro_precovenda = @precovenda, pro_icms = @icms where pro_id = @id ";
+                cmd = new NpgsqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("id", id);
+                cmd.Parameters.AddWithValue("nome", nome);
+                cmd.Parameters.AddWithValue("precocusto", precocusto);
+                cmd.Parameters.AddWithValue("precovenda", precovenda);
+                cmd.Parameters.AddWithValue("icms", icms);
+                cmd.ExecuteNonQuery();
+                conn.Close();
+                MessageBox.Show("Atualizado com sucesso!");
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show("Erro: " + e.Message);
+            }
+        }
     }
 }
+

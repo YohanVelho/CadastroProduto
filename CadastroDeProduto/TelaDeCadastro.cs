@@ -19,7 +19,6 @@ namespace CadastroDeProduto
         public TelaDeCadastro()
         {
             InitializeComponent();
-            Conection con = new Conection();
             gridProdutos.DataSource = null;
             gridProdutos.DataSource = con.Select();
         }
@@ -41,26 +40,28 @@ namespace CadastroDeProduto
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
             con.Cadastro(int.Parse(txtID.Text), txtNome.Text, double.Parse(txtPrecoCusto.Text), double.Parse(txtPrecoVenda.Text), int.Parse(txtICMS.Text));
+            txtID.Text = txtNome.Text = txtPrecoCusto.Text = txtPrecoVenda.Text = txtICMS.Text = null;
             gridProdutos.DataSource = con.Select();
+            rowIndex = -1;
         }
 
         private void btnDeletar_Click(object sender, EventArgs e)
         {
-            if (rowIndex < 0)
+            if (txtID.Text == "" || txtID.Text == null)
             {
-                MessageBox.Show("Selecione um produto para ser excluído!");
-                    return;
+                MessageBox.Show("Selecione um produto para ser excluído.");
+                return;
             }
             else
             {
                 try
                 {
                     con.conn.Open();
-                    con.sql = @"delete from produtos where pro_id = @ID";
-                    NpgsqlCommand cmd = new NpgsqlCommand(con.sql, con.conn);
-                    cmd.Parameters.AddWithValue("ID",int.Parse(gridProdutos.Rows[rowIndex].Cells["ID"].Value.ToString())); 
+                    con.sql = @"delete from produtos where pro_id = (:id)";
+                    con.cmd = new NpgsqlCommand(con.sql, con.conn);
+                    con.cmd.Parameters.AddWithValue("id", int.Parse(txtID.Text));
+                    con.cmd.ExecuteReader();
                     MessageBox.Show("Produto excluído com sucesso!");
-                    rowIndex = -1;
                     con.conn.Close();
                 }
                 catch (Exception ex)
@@ -69,7 +70,26 @@ namespace CadastroDeProduto
                     MessageBox.Show("Error: " + ex.Message);
                 }
             }
-            con.Select();
+            gridProdutos.DataSource = null;
+            gridProdutos.DataSource = con.Select();
+            txtID.Text = txtNome.Text = txtPrecoCusto.Text = txtPrecoVenda.Text = txtICMS.Text = null;
+            rowIndex = -1;
+        }
+
+        private void btnAtualizar_Click(object sender, EventArgs e)
+        {
+            if (rowIndex == -1)
+            {
+                MessageBox.Show("Selecione um produto para ser atualizado.");
+            }
+            else
+            {
+                con.Atualizar(int.Parse(txtID.Text), txtNome.Text, double.Parse(txtPrecoCusto.Text), double.Parse(txtPrecoVenda.Text), int.Parse(txtICMS.Text));
+            }
+            gridProdutos.DataSource = null;
+            gridProdutos.DataSource = con.Select();
+            txtID.Text = txtNome.Text = txtPrecoCusto.Text = txtPrecoVenda.Text = txtICMS.Text = null;
+            rowIndex = -1;
         }
     }
 }

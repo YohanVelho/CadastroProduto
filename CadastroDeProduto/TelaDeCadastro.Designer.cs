@@ -64,16 +64,17 @@ namespace CadastroDeProduto
             this.btnAtualizar.Location = new System.Drawing.Point(94, 13);
             this.btnAtualizar.Name = "btnAtualizar";
             this.btnAtualizar.Size = new System.Drawing.Size(75, 23);
-            this.btnAtualizar.TabIndex = 1;
+            this.btnAtualizar.TabIndex = 7;
             this.btnAtualizar.Text = "Atualizar";
             this.btnAtualizar.UseVisualStyleBackColor = true;
+            this.btnAtualizar.Click += new System.EventHandler(this.btnAtualizar_Click);
             // 
             // btnDeletar
             // 
             this.btnDeletar.Location = new System.Drawing.Point(175, 12);
             this.btnDeletar.Name = "btnDeletar";
             this.btnDeletar.Size = new System.Drawing.Size(75, 23);
-            this.btnDeletar.TabIndex = 1;
+            this.btnDeletar.TabIndex = 8;
             this.btnDeletar.Text = "Deletar";
             this.btnDeletar.UseVisualStyleBackColor = true;
             this.btnDeletar.Click += new System.EventHandler(this.btnDeletar_Click);
@@ -83,7 +84,7 @@ namespace CadastroDeProduto
             this.btnPesquisar.Location = new System.Drawing.Point(13, 126);
             this.btnPesquisar.Name = "btnPesquisar";
             this.btnPesquisar.Size = new System.Drawing.Size(75, 23);
-            this.btnPesquisar.TabIndex = 1;
+            this.btnPesquisar.TabIndex = 9;
             this.btnPesquisar.Text = "Pesquisar";
             this.btnPesquisar.UseVisualStyleBackColor = true;
             // 
@@ -107,7 +108,7 @@ namespace CadastroDeProduto
             this.lblNome.Location = new System.Drawing.Point(94, 54);
             this.lblNome.Name = "lblNome";
             this.lblNome.Size = new System.Drawing.Size(35, 13);
-            this.lblNome.TabIndex = 3;
+            this.lblNome.TabIndex = 40;
             this.lblNome.Text = "Nome";
             // 
             // lblId
@@ -116,7 +117,7 @@ namespace CadastroDeProduto
             this.lblId.Location = new System.Drawing.Point(32, 54);
             this.lblId.Name = "lblId";
             this.lblId.Size = new System.Drawing.Size(16, 13);
-            this.lblId.TabIndex = 3;
+            this.lblId.TabIndex = 501;
             this.lblId.Text = "Id";
             // 
             // lblIcms
@@ -125,7 +126,7 @@ namespace CadastroDeProduto
             this.lblIcms.Location = new System.Drawing.Point(541, 89);
             this.lblIcms.Name = "lblIcms";
             this.lblIcms.Size = new System.Drawing.Size(33, 13);
-            this.lblIcms.TabIndex = 3;
+            this.lblIcms.TabIndex = 403;
             this.lblIcms.Text = "ICMS";
             // 
             // lblPrecoCusto
@@ -134,7 +135,7 @@ namespace CadastroDeProduto
             this.lblPrecoCusto.Location = new System.Drawing.Point(32, 89);
             this.lblPrecoCusto.Name = "lblPrecoCusto";
             this.lblPrecoCusto.Size = new System.Drawing.Size(80, 13);
-            this.lblPrecoCusto.TabIndex = 3;
+            this.lblPrecoCusto.TabIndex = 503;
             this.lblPrecoCusto.Text = "Preço de Custo";
             // 
             // txtPrecoCusto
@@ -157,7 +158,7 @@ namespace CadastroDeProduto
             this.lblPrecoVenda.Location = new System.Drawing.Point(260, 89);
             this.lblPrecoVenda.Name = "lblPrecoVenda";
             this.lblPrecoVenda.Size = new System.Drawing.Size(84, 13);
-            this.lblPrecoVenda.TabIndex = 3;
+            this.lblPrecoVenda.TabIndex = 503;
             this.lblPrecoVenda.Text = "Preço de Venda";
             // 
             // txtICMS
@@ -185,8 +186,9 @@ namespace CadastroDeProduto
             this.gridProdutos.ReadOnly = true;
             this.gridProdutos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridProdutos.Size = new System.Drawing.Size(762, 372);
-            this.gridProdutos.TabIndex = 4;
+            this.gridProdutos.TabIndex = 20;
             this.gridProdutos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridProdutos_CellContentClick_1);
+            this.gridProdutos.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridProdutos_CellContentClick_1);
             // 
             // TelaDeCadastro
             // 
@@ -236,7 +238,6 @@ namespace CadastroDeProduto
         private System.Windows.Forms.TextBox txtICMS;
         private System.Windows.Forms.TextBox txtPesquisar;
         public System.Windows.Forms.DataGridView gridProdutos;
-
 
     }
 }
