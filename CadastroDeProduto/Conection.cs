@@ -45,6 +45,25 @@ namespace CadastroDeProduto
             }
         }
 
+        public void CadastroBarra(int id, int codigodebarra)
+        {
+            try
+            {
+                conn.Open();
+                sql = "insert into produtoscodigodebarra (pb_id,pb_codigodebarra) values (@id, @codigodebarra)";
+                cmd = new NpgsqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("id", id);
+                cmd.Parameters.AddWithValue("codigodebarra", codigodebarra);
+                cmd.ExecuteNonQuery();
+                conn.Close();
+                MessageBox.Show("Cadastrado com Sucesso!");
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Erro: " + e.Message);
+            }
+        }
+
         public void Atualizar(int id, string nome, double precocusto, double precovenda, string classificacao , int icms)
         {
             try

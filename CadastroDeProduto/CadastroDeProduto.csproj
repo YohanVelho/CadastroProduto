@@ -77,6 +77,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdicionarCodigoBarra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdicionarCodigoBarra.Designer.cs">
+      <DependentUpon>AdicionarCodigoBarra.cs</DependentUpon>
+    </Compile>
     <Compile Include="Conection.cs" />
     <Compile Include="TelaDeCadastro.cs">
       <SubType>Form</SubType>
@@ -86,6 +92,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AdicionarCodigoBarra.resx">
+      <DependentUpon>AdicionarCodigoBarra.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

@@ -15,12 +15,15 @@ namespace CadastroDeProduto
     {
         private int rowIndex = -1;
         Conection con = new Conection();
+        public static string id;
+        public static string nome;
 
         public TelaDeCadastro()
         {
             InitializeComponent();
             gridProdutos.DataSource = null;
             gridProdutos.DataSource = con.Select();
+            txtID.Enabled = false;
         }
 
 
@@ -38,12 +41,13 @@ namespace CadastroDeProduto
                 txtICMS.Text = gridProdutos.CurrentRow.Cells[5].Value.ToString();
                 comboBoxBarras.DisplayMember = "pb_codigodebarra";
                 comboBoxBarras.DataSource = con.CodBarras(int.Parse(txtID.Text));
+
             }
         }
 
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
-            con.Cadastro(txtNome.Text, double.Parse(txtPrecoCusto.Text), double.Parse(txtPrecoVenda.Text), comboBoxClassificacao.Text ,int.Parse(txtICMS.Text));
+            con.Cadastro(txtNome.Text, double.Parse(txtPrecoCusto.Text), double.Parse(txtPrecoVenda.Text), comboBoxClassificacao.Text, int.Parse(txtICMS.Text));
             txtID.Text = txtNome.Text = txtPrecoCusto.Text = txtPrecoVenda.Text = comboBoxClassificacao.Text = txtICMS.Text = comboBoxBarras.Text = null;
             gridProdutos.DataSource = con.Select();
             rowIndex = -1;
@@ -62,7 +66,7 @@ namespace CadastroDeProduto
             }
             gridProdutos.DataSource = null;
             gridProdutos.DataSource = con.Select();
-            txtID.Text = txtNome.Text = txtPrecoCusto.Text = txtPrecoVenda.Text = comboBoxClassificacao.Text = txtICMS.Text = null;
+            txtID.Text = txtNome.Text = txtPrecoCusto.Text = txtPrecoVenda.Text = comboBoxClassificacao.Text = txtICMS.Text = comboBoxBarras.Text = null;
             rowIndex = -1;
         }
 
@@ -74,17 +78,17 @@ namespace CadastroDeProduto
             }
             else
             {
-                con.Atualizar(int.Parse(txtID.Text), txtNome.Text, double.Parse(txtPrecoCusto.Text), double.Parse(txtPrecoVenda.Text), comboBoxClassificacao.Text , int.Parse(txtICMS.Text));
+                con.Atualizar(int.Parse(txtID.Text), txtNome.Text, double.Parse(txtPrecoCusto.Text), double.Parse(txtPrecoVenda.Text), comboBoxClassificacao.Text, int.Parse(txtICMS.Text));
             }
             gridProdutos.DataSource = null;
             gridProdutos.DataSource = con.Select();
-            txtID.Text = txtNome.Text = txtPrecoCusto.Text = txtPrecoVenda.Text = comboBoxClassificacao.Text = txtICMS.Text = null;
+            txtID.Text = txtNome.Text = txtPrecoCusto.Text = txtPrecoVenda.Text = comboBoxClassificacao.Text = txtICMS.Text = comboBoxBarras.Text = null;
             rowIndex = -1;
         }
 
         private void btnPesquisar_Click(object sender, EventArgs e)
         {
-            if(comboBox_Filtros.Text == "Filtros")
+            if (comboBox_Filtros.Text == "Filtros")
             {
                 MessageBox.Show("Selecione um Filtro.");
                 return;
@@ -92,30 +96,31 @@ namespace CadastroDeProduto
             else if (comboBox_Filtros.Text == "Pesquisar por preço de custo")
             {
                 gridProdutos.DataSource = null;
-                gridProdutos.DataSource = con.SelectByPrecoCusto(double.Parse(txtPesquisar.Text));;
-                rowIndex = -1;
-            }else if(comboBox_Filtros.Text == "Pesquisar por id")
-            {
-                gridProdutos.DataSource = null;
-                gridProdutos.DataSource = con.SelectById(int.Parse(txtPesquisar.Text));;
+                gridProdutos.DataSource = con.SelectByPrecoCusto(double.Parse(txtPesquisar.Text)); ;
                 rowIndex = -1;
             }
-            else if(comboBox_Filtros.Text == "Pesquisar por nome")
+            else if (comboBox_Filtros.Text == "Pesquisar por id")
             {
                 gridProdutos.DataSource = null;
-                gridProdutos.DataSource = con.SelectByName(txtPesquisar.Text);;
+                gridProdutos.DataSource = con.SelectById(int.Parse(txtPesquisar.Text)); ;
                 rowIndex = -1;
             }
-            else if(comboBox_Filtros.Text == "Pesquisar por classificação")
+            else if (comboBox_Filtros.Text == "Pesquisar por nome")
             {
                 gridProdutos.DataSource = null;
-                gridProdutos.DataSource = con.SelectByClassification(txtPesquisar.Text);;
+                gridProdutos.DataSource = con.SelectByName(txtPesquisar.Text); ;
                 rowIndex = -1;
             }
-            else if(comboBox_Filtros.Text == "Pesquisar por icms")
+            else if (comboBox_Filtros.Text == "Pesquisar por classificação")
             {
                 gridProdutos.DataSource = null;
-                gridProdutos.DataSource = con.SelectByICMS(int.Parse(txtPesquisar.Text));;
+                gridProdutos.DataSource = con.SelectByClassification(txtPesquisar.Text); ;
+                rowIndex = -1;
+            }
+            else if (comboBox_Filtros.Text == "Pesquisar por icms")
+            {
+                gridProdutos.DataSource = null;
+                gridProdutos.DataSource = con.SelectByICMS(int.Parse(txtPesquisar.Text)); ;
                 rowIndex = -1;
             }
             else if (comboBox_Filtros.Text == "Pesquisar por preço de venda")
@@ -125,6 +130,19 @@ namespace CadastroDeProduto
                 rowIndex = -1;
             }
         }
+
+        private void btnAdicionarCodigoBarra_Click(object sender, EventArgs e)
+        {
+            id = txtID.Text;
+            nome = txtNome.Text;
+            AdicionarCodigoBarra adicionarCodigoBarra = new AdicionarCodigoBarra();
+            adicionarCodigoBarra.ShowDialog();
+            gridProdutos.DataSource = null;
+            gridProdutos.DataSource = con.Select();
+            rowIndex = -1;
+        }
+
+
     }
 }
 

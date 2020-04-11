@@ -51,12 +51,13 @@ namespace CadastroDeProduto
             this.comboBoxClassificacao = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.comboBoxBarras = new System.Windows.Forms.ComboBox();
+            this.btnAdicionarCodigoBarra = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gridProdutos)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCadastrar
             // 
-            this.btnCadastrar.Location = new System.Drawing.Point(13, 13);
+            this.btnCadastrar.Location = new System.Drawing.Point(10, 12);
             this.btnCadastrar.Name = "btnCadastrar";
             this.btnCadastrar.Size = new System.Drawing.Size(75, 23);
             this.btnCadastrar.TabIndex = 6;
@@ -66,7 +67,7 @@ namespace CadastroDeProduto
             // 
             // btnAtualizar
             // 
-            this.btnAtualizar.Location = new System.Drawing.Point(94, 13);
+            this.btnAtualizar.Location = new System.Drawing.Point(91, 12);
             this.btnAtualizar.Name = "btnAtualizar";
             this.btnAtualizar.Size = new System.Drawing.Size(75, 23);
             this.btnAtualizar.TabIndex = 7;
@@ -76,7 +77,7 @@ namespace CadastroDeProduto
             // 
             // btnDeletar
             // 
-            this.btnDeletar.Location = new System.Drawing.Point(175, 12);
+            this.btnDeletar.Location = new System.Drawing.Point(172, 12);
             this.btnDeletar.Name = "btnDeletar";
             this.btnDeletar.Size = new System.Drawing.Size(75, 23);
             this.btnDeletar.TabIndex = 8;
@@ -86,7 +87,7 @@ namespace CadastroDeProduto
             // 
             // btnPesquisar
             // 
-            this.btnPesquisar.Location = new System.Drawing.Point(13, 127);
+            this.btnPesquisar.Location = new System.Drawing.Point(10, 127);
             this.btnPesquisar.Name = "btnPesquisar";
             this.btnPesquisar.Size = new System.Drawing.Size(75, 23);
             this.btnPesquisar.TabIndex = 11;
@@ -253,11 +254,22 @@ namespace CadastroDeProduto
             this.comboBoxBarras.Size = new System.Drawing.Size(97, 21);
             this.comboBoxBarras.TabIndex = 505;
             // 
+            // btnAdicionarCodigoBarra
+            // 
+            this.btnAdicionarCodigoBarra.Location = new System.Drawing.Point(432, 11);
+            this.btnAdicionarCodigoBarra.Name = "btnAdicionarCodigoBarra";
+            this.btnAdicionarCodigoBarra.Size = new System.Drawing.Size(143, 23);
+            this.btnAdicionarCodigoBarra.TabIndex = 506;
+            this.btnAdicionarCodigoBarra.Text = "Adicionar Código de Barra";
+            this.btnAdicionarCodigoBarra.UseVisualStyleBackColor = true;
+            this.btnAdicionarCodigoBarra.Click += new System.EventHandler(this.btnAdicionarCodigoBarra_Click);
+            // 
             // TelaDeCadastro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 561);
+            this.Controls.Add(this.btnAdicionarCodigoBarra);
             this.Controls.Add(this.comboBoxBarras);
             this.Controls.Add(this.comboBoxClassificacao);
             this.Controls.Add(this.comboBox_Filtros);
@@ -294,8 +306,8 @@ namespace CadastroDeProduto
         private System.Windows.Forms.Button btnAtualizar;
         private System.Windows.Forms.Button btnDeletar;
         private System.Windows.Forms.Button btnPesquisar;
-        private System.Windows.Forms.TextBox txtID;
-        private System.Windows.Forms.TextBox txtNome;
+        public System.Windows.Forms.TextBox txtID;
+        public System.Windows.Forms.TextBox txtNome;
         private System.Windows.Forms.Label lblNome;
         private System.Windows.Forms.Label lblId;
         private System.Windows.Forms.Label lblIcms;
@@ -311,6 +323,7 @@ namespace CadastroDeProduto
         private ComboBox comboBoxClassificacao;
         private Label label2;
         private ComboBox comboBoxBarras;
+        private Button btnAdicionarCodigoBarra;
     }
 }
 
