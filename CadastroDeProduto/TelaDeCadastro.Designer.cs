@@ -52,6 +52,8 @@ namespace CadastroDeProduto
             this.label2 = new System.Windows.Forms.Label();
             this.comboBoxBarras = new System.Windows.Forms.ComboBox();
             this.btnAdicionarCodigoBarra = new System.Windows.Forms.Button();
+            this.lbl1 = new System.Windows.Forms.Label();
+            this.lbl2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gridProdutos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -97,22 +99,23 @@ namespace CadastroDeProduto
             // 
             // txtID
             // 
-            this.txtID.Location = new System.Drawing.Point(54, 50);
+            this.txtID.Location = new System.Drawing.Point(54, 54);
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(34, 20);
             this.txtID.TabIndex = 1;
             // 
             // txtNome
             // 
-            this.txtNome.Location = new System.Drawing.Point(135, 50);
+            this.txtNome.Location = new System.Drawing.Point(135, 54);
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(637, 20);
-            this.txtNome.TabIndex = 2;
+            this.txtNome.TabIndex = 1;
+            this.txtNome.Validating += new System.ComponentModel.CancelEventHandler(this.txtNome_Validating);
             // 
             // lblNome
             // 
             this.lblNome.AutoSize = true;
-            this.lblNome.Location = new System.Drawing.Point(94, 54);
+            this.lblNome.Location = new System.Drawing.Point(94, 58);
             this.lblNome.Name = "lblNome";
             this.lblNome.Size = new System.Drawing.Size(35, 13);
             this.lblNome.TabIndex = 40;
@@ -121,7 +124,7 @@ namespace CadastroDeProduto
             // lblId
             // 
             this.lblId.AutoSize = true;
-            this.lblId.Location = new System.Drawing.Point(32, 54);
+            this.lblId.Location = new System.Drawing.Point(32, 58);
             this.lblId.Name = "lblId";
             this.lblId.Size = new System.Drawing.Size(16, 13);
             this.lblId.TabIndex = 501;
@@ -130,7 +133,7 @@ namespace CadastroDeProduto
             // lblIcms
             // 
             this.lblIcms.AutoSize = true;
-            this.lblIcms.Location = new System.Drawing.Point(429, 91);
+            this.lblIcms.Location = new System.Drawing.Point(429, 96);
             this.lblIcms.Name = "lblIcms";
             this.lblIcms.Size = new System.Drawing.Size(33, 13);
             this.lblIcms.TabIndex = 403;
@@ -139,7 +142,7 @@ namespace CadastroDeProduto
             // lblPrecoCusto
             // 
             this.lblPrecoCusto.AutoSize = true;
-            this.lblPrecoCusto.Location = new System.Drawing.Point(32, 91);
+            this.lblPrecoCusto.Location = new System.Drawing.Point(32, 96);
             this.lblPrecoCusto.Name = "lblPrecoCusto";
             this.lblPrecoCusto.Size = new System.Drawing.Size(80, 13);
             this.lblPrecoCusto.TabIndex = 503;
@@ -147,22 +150,24 @@ namespace CadastroDeProduto
             // 
             // txtPrecoCusto
             // 
-            this.txtPrecoCusto.Location = new System.Drawing.Point(113, 87);
+            this.txtPrecoCusto.Location = new System.Drawing.Point(113, 92);
             this.txtPrecoCusto.Name = "txtPrecoCusto";
             this.txtPrecoCusto.Size = new System.Drawing.Size(75, 20);
-            this.txtPrecoCusto.TabIndex = 3;
+            this.txtPrecoCusto.TabIndex = 2;
+            this.txtPrecoCusto.Validating += new System.ComponentModel.CancelEventHandler(this.txtPrecoCusto_Validating);
             // 
             // txtPrecoVenda
             // 
-            this.txtPrecoVenda.Location = new System.Drawing.Point(305, 87);
+            this.txtPrecoVenda.Location = new System.Drawing.Point(305, 92);
             this.txtPrecoVenda.Name = "txtPrecoVenda";
             this.txtPrecoVenda.Size = new System.Drawing.Size(75, 20);
-            this.txtPrecoVenda.TabIndex = 4;
+            this.txtPrecoVenda.TabIndex = 3;
+            this.txtPrecoVenda.Validating += new System.ComponentModel.CancelEventHandler(this.txtPrecoVenda_Validating);
             // 
             // lblPrecoVenda
             // 
             this.lblPrecoVenda.AutoSize = true;
-            this.lblPrecoVenda.Location = new System.Drawing.Point(215, 91);
+            this.lblPrecoVenda.Location = new System.Drawing.Point(215, 96);
             this.lblPrecoVenda.Name = "lblPrecoVenda";
             this.lblPrecoVenda.Size = new System.Drawing.Size(84, 13);
             this.lblPrecoVenda.TabIndex = 503;
@@ -170,10 +175,10 @@ namespace CadastroDeProduto
             // 
             // txtICMS
             // 
-            this.txtICMS.Location = new System.Drawing.Point(468, 87);
+            this.txtICMS.Location = new System.Drawing.Point(468, 92);
             this.txtICMS.Name = "txtICMS";
             this.txtICMS.Size = new System.Drawing.Size(75, 20);
-            this.txtICMS.TabIndex = 5;
+            this.txtICMS.TabIndex = 4;
             // 
             // txtPesquisar
             // 
@@ -218,7 +223,7 @@ namespace CadastroDeProduto
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(600, 91);
+            this.label1.Location = new System.Drawing.Point(600, 96);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(69, 13);
             this.label1.TabIndex = 403;
@@ -232,10 +237,11 @@ namespace CadastroDeProduto
             "Alimentos",
             "Cigarros",
             "Bebidas"});
-            this.comboBoxClassificacao.Location = new System.Drawing.Point(675, 87);
+            this.comboBoxClassificacao.Location = new System.Drawing.Point(675, 92);
             this.comboBoxClassificacao.Name = "comboBoxClassificacao";
             this.comboBoxClassificacao.Size = new System.Drawing.Size(97, 21);
-            this.comboBoxClassificacao.TabIndex = 505;
+            this.comboBoxClassificacao.TabIndex = 5;
+            this.comboBoxClassificacao.Validating += new System.ComponentModel.CancelEventHandler(this.comboBoxClassificacao_Validating);
             // 
             // label2
             // 
@@ -264,11 +270,36 @@ namespace CadastroDeProduto
             this.btnAdicionarCodigoBarra.UseVisualStyleBackColor = true;
             this.btnAdicionarCodigoBarra.Click += new System.EventHandler(this.btnAdicionarCodigoBarra_Click);
             // 
+            // lbl1
+            // 
+            this.lbl1.AutoSize = true;
+            this.lbl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl1.ForeColor = System.Drawing.Color.Red;
+            this.lbl1.Location = new System.Drawing.Point(132, 38);
+            this.lbl1.Name = "lbl1";
+            this.lbl1.Size = new System.Drawing.Size(93, 13);
+            this.lbl1.TabIndex = 507;
+            this.lbl1.Text = "*Nome em Branco";
+            this.lbl1.Visible = false;
+            // 
+            // lbl2
+            // 
+            this.lbl2.AutoSize = true;
+            this.lbl2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl2.ForeColor = System.Drawing.Color.Red;
+            this.lbl2.Location = new System.Drawing.Point(302, 76);
+            this.lbl2.Name = "lbl2";
+            this.lbl2.Size = new System.Drawing.Size(115, 13);
+            this.lbl2.TabIndex = 507;
+            this.lbl2.Text = "*Preço de venda vazio";
+            // 
             // TelaDeCadastro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 561);
+            this.Controls.Add(this.lbl2);
+            this.Controls.Add(this.lbl1);
             this.Controls.Add(this.btnAdicionarCodigoBarra);
             this.Controls.Add(this.comboBoxBarras);
             this.Controls.Add(this.comboBoxClassificacao);
@@ -324,6 +355,8 @@ namespace CadastroDeProduto
         private Label label2;
         private ComboBox comboBoxBarras;
         private Button btnAdicionarCodigoBarra;
+        private Label lbl1;
+        private Label lbl2;
     }
 }
 

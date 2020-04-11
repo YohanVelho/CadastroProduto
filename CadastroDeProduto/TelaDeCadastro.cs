@@ -24,6 +24,8 @@ namespace CadastroDeProduto
             gridProdutos.DataSource = null;
             gridProdutos.DataSource = con.Select();
             txtID.Enabled = false;
+            lbl1.Visible = false;
+            lbl2.Visible = false;
         }
 
 
@@ -47,6 +49,20 @@ namespace CadastroDeProduto
 
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
+            if(txtPrecoCusto.Text == null || txtPrecoCusto.Text == "")
+            {
+                txtPrecoCusto.Text = "0.0";
+                MessageBox.Show("O preço de custo está vazio");
+            }if (txtICMS.Text == null || txtICMS.Text == "")
+            {
+                txtICMS.Text = "0";
+                MessageBox.Show("O ICMS está vazio");
+            }
+            if(comboBoxClassificacao.Text == null || comboBoxClassificacao.Text == "")
+            {
+                comboBoxClassificacao.Text = "Vazio";
+                MessageBox.Show("A Classificação está vazia");
+            }
             con.Cadastro(txtNome.Text, double.Parse(txtPrecoCusto.Text), double.Parse(txtPrecoVenda.Text), comboBoxClassificacao.Text, int.Parse(txtICMS.Text));
             txtID.Text = txtNome.Text = txtPrecoCusto.Text = txtPrecoVenda.Text = comboBoxClassificacao.Text = txtICMS.Text = comboBoxBarras.Text = null;
             gridProdutos.DataSource = con.Select();
@@ -142,7 +158,71 @@ namespace CadastroDeProduto
             rowIndex = -1;
         }
 
+        private void txtNome_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtNome.Text.Trim()))
+            {
+                lbl1.Visible = true;
+            }
+            else
+            {
+                lbl1.Visible = false;
+            }
+        }
 
+        private void txtPrecoCusto_Validating(object sender, CancelEventArgs e)
+        {
+
+            double numero = 0;
+            if (string.IsNullOrEmpty(txtPrecoCusto.Text.Trim()))
+            {
+            }
+            else if (!(double.TryParse(txtPrecoCusto.Text.ToString(), out numero)))
+            {
+                MessageBox.Show("Digite apenas numeros");
+                txtPrecoCusto.Text = null;
+            }
+            else if (double.Parse(txtPrecoCusto.Text) < 0)
+            {
+                MessageBox.Show("O valor não pode ser negativo");
+                txtPrecoCusto.Text = null;
+            }  
+        }
+
+        private void txtPrecoVenda_Validating(object sender, CancelEventArgs e)
+        {
+            double numero = 0;
+            if (string.IsNullOrEmpty(txtPrecoVenda.Text.Trim()))
+            {
+                lbl2.Visible = true;
+            }
+            else if (!(double.TryParse(txtPrecoVenda.Text.ToString(), out numero)))
+            {
+                MessageBox.Show("Digite apenas numeros");
+                txtPrecoVenda.Text = null;
+                lbl2.Visible = false;
+            }
+            else if (double.Parse(txtPrecoVenda.Text) < 0)
+            {
+                MessageBox.Show("O valor não pode ser negativo");
+                txtPrecoVenda.Text = null;
+                lbl2.Visible = false;
+            }
+            else
+            {
+                lbl2.Visible = false;
+            }
+
+        }
+
+        private void comboBoxClassificacao_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtPrecoCusto.Text))
+            {
+                MessageBox.Show("Classificação em Branco");
+            }
+
+        }
     }
 }
 
