@@ -29,19 +29,22 @@ namespace CadastroDeProduto
             if (e.RowIndex >= 0)
             {
                 rowIndex = e.RowIndex;
+                txtID.Text = txtNome.Text = txtPrecoCusto.Text = txtPrecoVenda.Text = comboBoxClassificacao.Text = txtICMS.Text = comboBoxBarras.Text = null;
                 txtID.Text = gridProdutos.CurrentRow.Cells[0].Value.ToString();
                 txtNome.Text = gridProdutos.CurrentRow.Cells[1].Value.ToString();
                 txtPrecoCusto.Text = gridProdutos.CurrentRow.Cells[2].Value.ToString();
                 txtPrecoVenda.Text = gridProdutos.CurrentRow.Cells[3].Value.ToString();
                 comboBoxClassificacao.Text = gridProdutos.CurrentRow.Cells[4].Value.ToString();
                 txtICMS.Text = gridProdutos.CurrentRow.Cells[5].Value.ToString();
+                comboBoxBarras.DisplayMember = "pb_codigodebarra";
+                comboBoxBarras.DataSource = con.CodBarras(int.Parse(txtID.Text));
             }
         }
 
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
-            con.Cadastro(int.Parse(txtID.Text), txtNome.Text, double.Parse(txtPrecoCusto.Text), double.Parse(txtPrecoVenda.Text), comboBoxClassificacao.Text ,int.Parse(txtICMS.Text));
-            txtID.Text = txtNome.Text = txtPrecoCusto.Text = txtPrecoVenda.Text = comboBoxClassificacao.Text = txtICMS.Text = null;
+            con.Cadastro(txtNome.Text, double.Parse(txtPrecoCusto.Text), double.Parse(txtPrecoVenda.Text), comboBoxClassificacao.Text ,int.Parse(txtICMS.Text));
+            txtID.Text = txtNome.Text = txtPrecoCusto.Text = txtPrecoVenda.Text = comboBoxClassificacao.Text = txtICMS.Text = comboBoxBarras.Text = null;
             gridProdutos.DataSource = con.Select();
             rowIndex = -1;
         }
@@ -55,21 +58,7 @@ namespace CadastroDeProduto
             }
             else
             {
-                try
-                {
-                    con.conn.Open();
-                    con.sql = @"delete from produtos where pro_id = (:id)";
-                    con.cmd = new NpgsqlCommand(con.sql, con.conn);
-                    con.cmd.Parameters.AddWithValue("id", int.Parse(txtID.Text));
-                    con.cmd.ExecuteReader();
-                    MessageBox.Show("Produto excluído com sucesso!");
-                    con.conn.Close();
-                }
-                catch (Exception ex)
-                {
-                    con.conn.Close();
-                    MessageBox.Show("Error: " + ex.Message);
-                }
+                con.Deletar(int.Parse(txtID.Text));
             }
             gridProdutos.DataSource = null;
             gridProdutos.DataSource = con.Select();

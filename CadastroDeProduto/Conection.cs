@@ -22,14 +22,13 @@ namespace CadastroDeProduto
         {
         }
 
-        public void Cadastro(int ID, string nome, double precocusto, double precovenda, string classificacao , int icms)
+        public void Cadastro(string nome, double precocusto, double precovenda, string classificacao , int icms)
         {
             try
             {
                 conn.Open();
-                sql = "insert into produtos (pro_id,pro_nome,pro_precocusto,pro_precovenda,pro_classificacao,pro_icms) values (@id, @nome, @precocusto, @precovenda, @classificacao , @icms)";
+                sql = "insert into produtos (pro_nome,pro_precocusto,pro_precovenda,pro_classificacao,pro_icms) values (@nome, @precocusto, @precovenda, @classificacao , @icms)";
                 cmd = new NpgsqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("id", ID);
                 cmd.Parameters.AddWithValue("nome", nome);
                 cmd.Parameters.AddWithValue("precocusto", precocusto);
                 cmd.Parameters.AddWithValue("precovenda", precovenda);
@@ -51,7 +50,7 @@ namespace CadastroDeProduto
             try
             {
                 conn.Open();
-                sql = "update produtos set pro_id = @id, pro_nome = @nome , pro_precocusto = @precocusto, pro_precovenda = @precovenda, pro_classificacao = @classificacao , pro_icms = @icms where pro_id = @id ";
+                sql = "update produtos set pro_nome = @nome , pro_precocusto = @precocusto, pro_precovenda = @precovenda, pro_classificacao = @classificacao , pro_icms = @icms where pro_id = @id ";
                 cmd = new NpgsqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("id", id);
                 cmd.Parameters.AddWithValue("nome", nome);
@@ -66,6 +65,25 @@ namespace CadastroDeProduto
             catch(Exception e)
             {
                 MessageBox.Show("Erro: " + e.Message);
+            }
+        }
+
+        public void Deletar(int id)
+        {
+            try
+            {
+                conn.Open();
+                sql = @"delete from produtos where pro_id = (:id)";
+                cmd = new NpgsqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("id", id);
+                cmd.ExecuteReader();
+                conn.Close();
+                MessageBox.Show("Produto excluído com sucesso!");
+            }
+            catch (Exception ex)
+            {
+                conn.Close();
+                MessageBox.Show("Error: " + ex.Message);
             }
         }
 
@@ -87,6 +105,28 @@ namespace CadastroDeProduto
             }
             return dt;
         }
+
+        public DataTable CodBarras(int id)
+        {
+            try
+            {
+                conn.Open();
+                sql = @"select pb_codigodebarra from produtoscodigodebarra where pb_id = @id";
+                cmd = new NpgsqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("id", id);
+                dt = new DataTable();
+                NpgsqlDataReader dr = cmd.ExecuteReader();
+                dt.Load(dr);
+                conn.Close();
+            }
+            catch (Exception e)
+            {
+                conn.Close();
+                MessageBox.Show("Error: " + e.Message);
+            }
+            return dt;
+        }
+
 
         public DataTable SelectByPrecoCusto(double precocusto)
         {

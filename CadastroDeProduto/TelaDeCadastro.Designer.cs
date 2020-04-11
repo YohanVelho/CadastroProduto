@@ -49,6 +49,8 @@ namespace CadastroDeProduto
             this.comboBox_Filtros = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.comboBoxClassificacao = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.comboBoxBarras = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.gridProdutos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -103,7 +105,7 @@ namespace CadastroDeProduto
             // 
             this.txtNome.Location = new System.Drawing.Point(135, 50);
             this.txtNome.Name = "txtNome";
-            this.txtNome.Size = new System.Drawing.Size(520, 20);
+            this.txtNome.Size = new System.Drawing.Size(637, 20);
             this.txtNome.TabIndex = 2;
             // 
             // lblNome
@@ -136,7 +138,7 @@ namespace CadastroDeProduto
             // lblPrecoCusto
             // 
             this.lblPrecoCusto.AutoSize = true;
-            this.lblPrecoCusto.Location = new System.Drawing.Point(32, 90);
+            this.lblPrecoCusto.Location = new System.Drawing.Point(32, 91);
             this.lblPrecoCusto.Name = "lblPrecoCusto";
             this.lblPrecoCusto.Size = new System.Drawing.Size(80, 13);
             this.lblPrecoCusto.TabIndex = 503;
@@ -144,14 +146,14 @@ namespace CadastroDeProduto
             // 
             // txtPrecoCusto
             // 
-            this.txtPrecoCusto.Location = new System.Drawing.Point(113, 86);
+            this.txtPrecoCusto.Location = new System.Drawing.Point(113, 87);
             this.txtPrecoCusto.Name = "txtPrecoCusto";
             this.txtPrecoCusto.Size = new System.Drawing.Size(75, 20);
             this.txtPrecoCusto.TabIndex = 3;
             // 
             // txtPrecoVenda
             // 
-            this.txtPrecoVenda.Location = new System.Drawing.Point(305, 86);
+            this.txtPrecoVenda.Location = new System.Drawing.Point(305, 87);
             this.txtPrecoVenda.Name = "txtPrecoVenda";
             this.txtPrecoVenda.Size = new System.Drawing.Size(75, 20);
             this.txtPrecoVenda.TabIndex = 4;
@@ -159,7 +161,7 @@ namespace CadastroDeProduto
             // lblPrecoVenda
             // 
             this.lblPrecoVenda.AutoSize = true;
-            this.lblPrecoVenda.Location = new System.Drawing.Point(215, 90);
+            this.lblPrecoVenda.Location = new System.Drawing.Point(215, 91);
             this.lblPrecoVenda.Name = "lblPrecoVenda";
             this.lblPrecoVenda.Size = new System.Drawing.Size(84, 13);
             this.lblPrecoVenda.TabIndex = 503;
@@ -229,20 +231,39 @@ namespace CadastroDeProduto
             "Alimentos",
             "Cigarros",
             "Bebidas"});
-            this.comboBoxClassificacao.Location = new System.Drawing.Point(675, 88);
+            this.comboBoxClassificacao.Location = new System.Drawing.Point(675, 87);
             this.comboBoxClassificacao.Name = "comboBoxClassificacao";
             this.comboBoxClassificacao.Size = new System.Drawing.Size(97, 21);
             this.comboBoxClassificacao.TabIndex = 505;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(581, 17);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(88, 13);
+            this.label2.TabIndex = 403;
+            this.label2.Text = "Código de Barras";
+            // 
+            // comboBoxBarras
+            // 
+            this.comboBoxBarras.FormattingEnabled = true;
+            this.comboBoxBarras.Location = new System.Drawing.Point(675, 13);
+            this.comboBoxBarras.Name = "comboBoxBarras";
+            this.comboBoxBarras.Size = new System.Drawing.Size(97, 21);
+            this.comboBoxBarras.TabIndex = 505;
             // 
             // TelaDeCadastro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 561);
+            this.Controls.Add(this.comboBoxBarras);
             this.Controls.Add(this.comboBoxClassificacao);
             this.Controls.Add(this.comboBox_Filtros);
             this.Controls.Add(this.gridProdutos);
             this.Controls.Add(this.lblPrecoVenda);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.lblPrecoCusto);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblIcms);
@@ -288,6 +309,8 @@ namespace CadastroDeProduto
         private ComboBox comboBox_Filtros;
         private Label label1;
         private ComboBox comboBoxClassificacao;
+        private Label label2;
+        private ComboBox comboBoxBarras;
     }
 }
 
