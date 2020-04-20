@@ -32,5 +32,23 @@ namespace CadastroDeProduto
             con.CadastroBarra(int.Parse(txtBarraId.Text), int.Parse(txtBarraCodigo.Text));
             Close();
         }
+
+        private void txtBarraCodigo_Validating(object sender, CancelEventArgs e)
+        {
+            double numero = 0;
+            if (string.IsNullOrEmpty(txtBarraCodigo.Text.Trim()))
+            {
+            }
+            else if (!(double.TryParse(txtBarraCodigo.Text.ToString(), out numero)))
+            {
+                MessageBox.Show("Digite apenas numeros");
+                txtBarraCodigo.Text = null;
+            }
+            else if (double.Parse(txtBarraCodigo.Text) < 0)
+            {
+                MessageBox.Show("O código de barra não pode ser negativo");
+                txtBarraCodigo.Text = null;
+            }
+        }
     }
 }

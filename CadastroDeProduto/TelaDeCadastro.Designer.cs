@@ -295,8 +295,10 @@ namespace CadastroDeProduto
             // 
             // TelaDeCadastro
             // 
+            this.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(784, 561);
             this.Controls.Add(this.lbl2);
             this.Controls.Add(this.lbl1);
@@ -322,6 +324,7 @@ namespace CadastroDeProduto
             this.Controls.Add(this.btnDeletar);
             this.Controls.Add(this.btnAtualizar);
             this.Controls.Add(this.btnCadastrar);
+            this.MaximizeBox = false;
             this.Name = "TelaDeCadastro";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

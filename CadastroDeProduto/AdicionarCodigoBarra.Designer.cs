@@ -58,6 +58,7 @@
             this.txtBarraCodigo.Name = "txtBarraCodigo";
             this.txtBarraCodigo.Size = new System.Drawing.Size(100, 20);
             this.txtBarraCodigo.TabIndex = 0;
+            this.txtBarraCodigo.Validating += new System.ComponentModel.CancelEventHandler(this.txtBarraCodigo_Validating);
             // 
             // lblBarraId
             // 
